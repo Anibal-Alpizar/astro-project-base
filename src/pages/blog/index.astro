@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 const posts = await Astro.glob("./posts/*md");
+import bgImage from '../../images/code.png'
 ---
 
 <Layout
@@ -8,14 +9,23 @@ const posts = await Astro.glob("./posts/*md");
     pageDescription="es un tutorial de desarrollo y programacion"
 >
     <h1>Blog</h1>
+    <img
+        width="100"
+        src={bgImage}
+        alt=""
+    />
     {
         posts.map((post) => {
-            return <a href={post.url} class="link">{post.frontmatter.title}</a>
+            return (
+                <a href={post.url} class="link">
+                    {post.frontmatter.title}
+                </a>
+            );
         })
     }
 
     <style>
-        .link{
+        .link {
             background: wheat;
             color: black;
             text-decoration: none;
@@ -23,6 +33,4 @@ const posts = await Astro.glob("./posts/*md");
             margin-bottom: 4px;
         }
     </style>
-    
-    
 </Layout>
